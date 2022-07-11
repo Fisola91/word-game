@@ -15,7 +15,7 @@ RSpec.describe Game do
       game = Game.new(answer: "PYTHON")
 
       aggregate_failures do
-        expect(game.anagram.size).to eq 4
+        expect(game.anagram.size).to eq 6
         expect(game.anagram.split("").sort).to match_array(%w(H N O P T Y))
       end
     end
