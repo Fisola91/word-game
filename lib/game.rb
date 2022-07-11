@@ -6,5 +6,6 @@ class Game
 
   def anagram
     @answer
+
   end
 end
