@@ -16,7 +16,7 @@ RSpec.describe Game do
 
       aggregate_failures do
         expect(game.anagram.size).to eq 4
-        expect(game.anagram.split("").sort).to match_array(%w(HNOPTY))
+        expect(game.anagram.split("").sort).to match_array(%w(H N O P T Y))
       end
     end
   end
