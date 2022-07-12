@@ -8,6 +8,7 @@ RSpec.describe Game do
       aggregate_failures do
         expect(game.anagram.size).to eq 4
         expect(game.anagram.split("").sort).to match_array(%w(B R U Y))
+        expect(game.anagram).to_not eq("RUBY")
       end
     end
 
@@ -17,6 +18,7 @@ RSpec.describe Game do
       aggregate_failures do
         expect(game.anagram.size).to eq 6
         expect(game.anagram.split("").sort).to match_array(%w(H N O P T Y))
+        expect(game.anagram).to_not eq("PYTHON")
       end
     end
   end
