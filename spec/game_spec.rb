@@ -40,6 +40,8 @@ RSpec.describe Game do
           anagram = game.anagram
           expect(anagram).to_not eq("ABA")
           expect(anagram).to_not be_nil
+          expect(anagram.size).to eq 3
+          expect(anagram.split("").sort).to match_array(%w(A A B))
         end
       end
     end
