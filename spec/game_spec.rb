@@ -37,7 +37,9 @@ RSpec.describe Game do
 
       aggregate_failures do
         20.times do
-          expect(game.anagram).to_not eq("ABA")
+          anagram = game.anagram
+          expect(anagram).to_not eq("ABA")
+          expect(anagram).to_not be_nil
         end
       end
     end
