@@ -5,6 +5,6 @@ class Game
   end
 
   def anagram
-    @answer.split("").reverse.each { |answer| answer }.join
+    p @answer.split("").reverse.shuffle.join
   end
 end
