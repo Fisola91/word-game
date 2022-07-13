@@ -5,8 +5,13 @@ class Game
   end
 
   def anagram
-    answer = @answer.split("").shuffle.join
-    answer2 = @answer.split("").join
-    answer if answer != answer2
+    shuffle_word = @answer.split("").shuffle.join
+    # shuffle_word if shuffle_word != answer
+
+    if shuffle_word != answer
+      shuffle_word
+    else
+      "invalid"
+    end
   end
 end
