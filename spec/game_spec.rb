@@ -31,5 +31,19 @@ RSpec.describe Game do
         expect(game.anagram).to_not eq("ABCDCBA")
       end
     end
+
+    it "returns an anagram of a palindrome, that is not itself" do
+      game = Game.new(answer: "ABA")
+
+      aggregate_failures do
+        20.times do
+          anagram = game.anagram
+          expect(anagram).to_not eq("ABA")
+          expect(anagram).to_not be_nil
+          expect(anagram.size).to eq 3
+          expect(anagram.split("").sort).to match_array(%w(A A B))
+        end
+      end
+    end
   end
 end

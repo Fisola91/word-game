@@ -5,6 +5,16 @@ class Game
   end
 
   def anagram
-    @answer.split("").shuffle.join
+    shuffle_word = shuffle(answer)
+    while answer == shuffle_word
+      shuffle_word = shuffle(answer)
+    end
+    shuffle_word
+  end
+
+  private
+
+  def shuffle(word)
+    word.split("").shuffle.join
   end
 end
