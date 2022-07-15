@@ -6,7 +6,7 @@ class Game
 
   def start
     puts "Let's play a game"
-    puts "Guess a word from an anagram #{anagram}"
+    puts "Guess a word from an anagram #{shuffle(answer)}"
   end
 
   def anagram
@@ -23,5 +23,3 @@ class Game
     word.split("").shuffle.join
   end
 end
-# game = Game.new(answer: "RUBY")
-# game_output_lines = capture_lines { game.start }
