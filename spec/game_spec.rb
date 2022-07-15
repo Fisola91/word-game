@@ -47,7 +47,7 @@ RSpec.describe Game do
     end
   end
 
-  fdescribe "#start" do
+  describe "#start" do
     it "prints out an anagram" do
       game = Game.new(answer: "RUBY")
 
