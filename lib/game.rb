@@ -8,6 +8,7 @@ class Game
     shuffle_word = shuffle(answer)
     while answer == shuffle_word
       shuffle_word = shuffle(answer)
+      p "#{shuffle_word} : #{answer}"
     end
     shuffle_word
   end
