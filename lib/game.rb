@@ -4,6 +4,9 @@ class Game
     @answer = answer
   end
 
+  def start
+  end
+
   def anagram
     shuffle_word = shuffle(answer)
     while answer == shuffle_word
