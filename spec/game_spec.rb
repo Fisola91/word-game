@@ -72,7 +72,7 @@ RSpec.describe Game do
       expect(game_output_lines[2]).to eq "You win! The answer is RUBY."
     end
 
-    xit "can be won with some incorrect guesses" do
+    it "can be won with some incorrect guesses" do
       guesses = ["ONE", "TWO", "RUBY"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answer: "RUBY", input: input, output: output, max_attempts: 3)
@@ -91,7 +91,7 @@ RSpec.describe Game do
       end
     end
 
-    xit "is lost with all incorrect guesses" do
+    it "is lost with all incorrect guesses" do
       guesses = ["ONE", "TWO", "THREE"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answer: "RUBY", input: input, output: output, max_attempts: 3)

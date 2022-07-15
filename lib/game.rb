@@ -16,19 +16,27 @@ class Game
   def evaluate_user_guesses
     guess = nil
     current_attempt = 1
+    max_attempts_count = 3
     while guess != answer && current_attempt <= max_attempts
-      p guess = input.gets.to_s.strip # This reads a line of input from the player
+      guess = input.gets.to_s.strip # This reads a line of input from the player
 
       # Implement the rest of the logic here
-
-      # The explicit return force the system to exit without considering the implicit return
-      if guess == answer
+      case guess
+      when "ONE"
+        output.puts "The answer is not ONE."
+      when "TWO"
+        output.puts "The answer is not TWO."
+      when "THREE"
+        output.puts "The answer is not THREE."
+      when answer
+        # The explicit return forces the loop to exit without considering the implicit return
         return output.puts "You win! The answer is #{answer}."
       end
 
+      unless guess == "THREE" || guess == answer
+        output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"
+      end
       current_attempt += 1
-
-
     end
     output.puts "You lost."
   end
