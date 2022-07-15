@@ -5,13 +5,15 @@ class Game
   end
 
   def start
+    # On-going
+    str =
+    STDIN.select { |line| line =~ /[A-Z]/ }
   end
 
   def anagram
     shuffle_word = shuffle(answer)
     while answer == shuffle_word
       shuffle_word = shuffle(answer)
-      p "#{shuffle_word} : #{answer}"
     end
     shuffle_word
   end
@@ -22,3 +24,5 @@ class Game
     word.split("").shuffle.join
   end
 end
+# game = Game.new(answer: "RUBY")
+# game_output_lines = capture_lines { game.start }
