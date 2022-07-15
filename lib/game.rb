@@ -6,8 +6,19 @@ class Game
 
   def start
     # On-going
-    str =
-    STDIN.select { |line| line =~ /[A-Z]/ }
+    # shuffle(word)
+    $stdout.puts "Let's play a game"
+    # shuffle(answer) if $stdout.string =~ /[A-Z]/
+
+
+    # array = ["Let's play a game", shuffle(answer)]
+    # p array[0]
+    # guess_word = shuffle(answer)
+    # guess_word
+
+    #  array.each { |ar|  $stdout.puts ar }
+
+  #  .select { |line| line =~ /[A-Z]/ }
   end
 
   def anagram
