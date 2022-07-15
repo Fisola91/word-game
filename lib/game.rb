@@ -5,20 +5,8 @@ class Game
   end
 
   def start
-    # On-going
-    # shuffle(word)
-    $stdout.puts "Let's play a game"
-    # shuffle(answer) if $stdout.string =~ /[A-Z]/
-
-
-    # array = ["Let's play a game", shuffle(answer)]
-    # p array[0]
-    # guess_word = shuffle(answer)
-    # guess_word
-
-    #  array.each { |ar|  $stdout.puts ar }
-
-  #  .select { |line| line =~ /[A-Z]/ }
+    puts "Let's play a game"
+    puts "Guess a word from an anagram #{anagram}"
   end
 
   def anagram
