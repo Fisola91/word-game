@@ -2,7 +2,7 @@ require "game"
 
 RSpec.describe Game do
   describe "#anagram" do
-    it "returns anagram of a given answer" do
+    it "returns an anagram of a given answer" do
       game = Game.new(answer: "RUBY")
 
       aggregate_failures do
@@ -12,7 +12,7 @@ RSpec.describe Game do
       end
     end
 
-    it "returns a different anagram of a given answer" do
+    it "returns an anagram of a given answer that does not match the original answer" do
       game = Game.new(answer: "PYTHON")
 
       aggregate_failures do
@@ -32,7 +32,7 @@ RSpec.describe Game do
       end
     end
 
-    it "returns an anagram of a palindrome, that is not itself" do
+    it "returns an anagram of a palindrome, that is not itself, even when called many times" do
       game = Game.new(answer: "ABA")
 
       aggregate_failures do
@@ -48,10 +48,14 @@ RSpec.describe Game do
   end
 
   describe "#start" do
-    it "prints out an anagram" do
-      game = Game.new(answer: "RUBY")
+    let(:output) { StringIO.new }
 
-      game_output_lines = capture_lines { game.start }
+    it "prints out an anagram" do
+      input = StringIO.new
+      game = Game.new(answer: "RUBY", input: input, output: output)
+      game.start
+
+      game_output_lines = output.string.split("\n")
 
       expect(game_output_lines[0]).to eq "Let's play a game"
       expect(game_output_lines[1]).to match(/^Guess a word from an anagram [RUBY]{4}$/)
