@@ -17,11 +17,18 @@ class Game
     guess = nil
     current_attempt = 1
     while guess != answer && current_attempt <= max_attempts
-      guess = input.gets.to_s.strip # This reads a line of input from the player
+      p guess = input.gets.to_s.strip # This reads a line of input from the player
 
       # Implement the rest of the logic here
 
+      # The explicit return force the system to exit without considering the implicit return
+      if guess == answer
+        return output.puts "You win! The answer is #{answer}."
+      end
+
       current_attempt += 1
+
+
     end
     output.puts "You lost."
   end
