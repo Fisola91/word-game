@@ -4,11 +4,15 @@ class Game
     @answer = answer
   end
 
+  def start
+    puts "Let's play a game"
+    puts "Guess a word from an anagram #{shuffle(answer)}"
+  end
+
   def anagram
     shuffle_word = shuffle(answer)
     while answer == shuffle_word
       shuffle_word = shuffle(answer)
-      p "#{shuffle_word} : #{answer}"
     end
     shuffle_word
   end

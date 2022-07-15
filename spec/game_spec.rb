@@ -46,4 +46,15 @@ RSpec.describe Game do
       end
     end
   end
+
+  describe "#start" do
+    it "prints out an anagram" do
+      game = Game.new(answer: "RUBY")
+
+      game_output_lines = capture_lines { game.start }
+
+      expect(game_output_lines[0]).to eq "Let's play a game"
+      expect(game_output_lines[1]).to match(/^Guess a word from an anagram [RUBY]{4}$/)
+    end
+  end
 end
