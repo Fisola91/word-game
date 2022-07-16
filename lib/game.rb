@@ -22,12 +22,12 @@ class Game
 
       # Implement the rest of the logic here
       case guess
-      when "ONE" || "TWO" || "THREE"
+      when "ONE"
         output.puts "The answer is not #{guess}."
-      # when "TWO"
-      #   output.puts "The answer is not #{guess}."
-      # when "THREE"
-      #   output.puts "The answer is not #{guess}."
+      when "TWO"
+        output.puts "The answer is not #{guess}."
+      when "THREE"
+        output.puts "The answer is not #{guess}."
       when answer
         # The explicit return forces the loop to exit without considering the implicit return
         return output.puts "You win! The answer is #{answer}."
