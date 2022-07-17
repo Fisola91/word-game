@@ -24,25 +24,11 @@ class Game
       # Implement the rest of the logic here
       case guess
       when answer
-        # The explicit return forces the loop to exit without considering the implicit return
         return output.puts "You win! The answer is #{answer}."
       when guess
         output.puts "The answer is not #{guess}."
-      # when "TWO"
-      #   output.puts "The answer is not #{guess}."
-      # when "THREE"
-      #   output.puts "The answer is not #{guess}."
       end
-      # guesses = ["ALPHA", "BETA", "GAMMA"]
-      # expect(game_output_lines.size).to eq 8
-      # expect(game_output_lines[2]).to eq "The answer is not ALPHA."
-      # expect(game_output_lines[3]).to eq "Try again. Attempts left: 2"
-      # expect(game_output_lines[4]).to eq "The answer is not BETA."
-      # expect(game_output_lines[5]).to eq "Try again. Attempts left: 1"
-      # expect(game_output_lines[6]).to eq "The answer is not GAMMA."
-      # expect(game_output_lines[7]).to eq "You lost."
-
-      if guess != "THREE" && guess != "GAMMA"
+     if guess != answer && current_attempt < max_attempts
         output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"
       end
       current_attempt += 1
