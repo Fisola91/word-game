@@ -3,4 +3,4 @@ require "rubygems"
 
 require_relative("../lib/game")
 
-Game.new(answer: "foo").start
+Game.new(answers: ARGV).start
