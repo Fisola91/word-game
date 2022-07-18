@@ -60,5 +60,92 @@ RSpec.describe Game do
       expect(game_output_lines[0]).to eq "Let's play a game"
       expect(game_output_lines[1]).to match(/^Guess a word from an anagram [RUBY]{4}$/)
     end
+
+    it "accepts a correct guess" do
+      input = StringIO.new("RUBY") # We prepopulate inputs in advance, it's a slightly unusual way to test them
+      game = Game.new(answer: "RUBY", input: input, output: output)
+      game.start
+
+      game_output_lines = output.string.split("\n")
+
+      expect(game_output_lines.count).to eq 3
+      expect(game_output_lines[2]).to eq "You win! The answer is RUBY."
+    end
+
+    it "can be won with two incorrect guesses" do
+      guesses = ["ONE", "TWO", "RUBY"]
+      input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
+      game = Game.new(answer: "RUBY", input: input, output: output, max_attempts: 3)
+
+      game.start
+
+      game_output_lines = output.string.split("\n").map(&:strip)
+
+      aggregate_failures do
+        expect(game_output_lines.size).to eq 7
+        expect(game_output_lines[2]).to eq "The answer is not ONE."
+        expect(game_output_lines[3]).to eq "Try again. Attempts left: 2"
+        expect(game_output_lines[4]).to eq "The answer is not TWO."
+        expect(game_output_lines[5]).to eq "Try again. Attempts left: 1"
+        expect(game_output_lines[6]).to eq "You win! The answer is RUBY."
+      end
+    end
+
+    it "can be won with one incorrect guess" do
+      guesses = ["BURY", "RUBY"]
+      input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
+      game = Game.new(answer: "RUBY", input: input, output: output, max_attempts: 3)
+
+      game.start
+
+      game_output_lines = output.string.split("\n").map(&:strip)
+
+      aggregate_failures do
+        expect(game_output_lines.size).to eq 5
+        expect(game_output_lines[2]).to eq "The answer is not BURY."
+        expect(game_output_lines[3]).to eq "Try again. Attempts left: 2"
+        expect(game_output_lines[4]).to eq "You win! The answer is RUBY."
+      end
+    end
+
+    it "is lost with all incorrect guesses" do
+      guesses = ["ONE", "TWO", "THREE"]
+      input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
+      game = Game.new(answer: "RUBY", input: input, output: output, max_attempts: 3)
+
+      game.start
+
+      game_output_lines = output.string.split("\n").map(&:strip)
+
+      aggregate_failures do
+        expect(game_output_lines.size).to eq 8
+        expect(game_output_lines[2]).to eq "The answer is not ONE."
+        expect(game_output_lines[3]).to eq "Try again. Attempts left: 2"
+        expect(game_output_lines[4]).to eq "The answer is not TWO."
+        expect(game_output_lines[5]).to eq "Try again. Attempts left: 1"
+        expect(game_output_lines[6]).to eq "The answer is not THREE."
+        expect(game_output_lines[7]).to eq "You lost."
+      end
+    end
+
+    it "is lost with a different set of incorrect guesses" do
+      guesses = ["ALPHA", "BETA", "GAMMA"]
+      input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
+      game = Game.new(answer: "RUBY", input: input, output: output, max_attempts: 3)
+
+      game.start
+
+      game_output_lines = output.string.split("\n").map(&:strip)
+
+      aggregate_failures do
+        expect(game_output_lines.size).to eq 8
+        expect(game_output_lines[2]).to eq "The answer is not ALPHA."
+        expect(game_output_lines[3]).to eq "Try again. Attempts left: 2"
+        expect(game_output_lines[4]).to eq "The answer is not BETA."
+        expect(game_output_lines[5]).to eq "Try again. Attempts left: 1"
+        expect(game_output_lines[6]).to eq "The answer is not GAMMA."
+        expect(game_output_lines[7]).to eq "You lost."
+      end
+    end
   end
 end

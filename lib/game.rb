@@ -16,11 +16,18 @@ class Game
   def evaluate_user_guesses
     guess = nil
     current_attempt = 1
+    max_attempts_count = 3
     while guess != answer && current_attempt <= max_attempts
       guess = input.gets.to_s.strip # This reads a line of input from the player
+      if guess == answer
+        return output.puts "You win! The answer is #{answer}."
+      else
+        output.puts "The answer is not #{guess}."
+      end
 
-      # Implement the rest of the logic here
-
+      if guess != answer && current_attempt < max_attempts
+        output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"
+      end
       current_attempt += 1
     end
     output.puts "You lost."
