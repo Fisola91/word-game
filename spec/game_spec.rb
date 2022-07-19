@@ -4,7 +4,7 @@ RSpec.describe Game do
   describe "#start" do
     let(:output) { StringIO.new }
 
-    it "prints out an anagram" do
+    fit "prints out an anagram" do
       input = StringIO.new
       game = Game.new(answers: ["RUBY"], input: input, output: output)
       game.start

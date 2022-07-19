@@ -11,6 +11,8 @@ class Game
 
   def start
    # implement me and any other methods you feel like you need
+   output.puts "Let's play a game. You will have to guess 1 anagram."
+   output.puts "1/1. Guess a word from an anagram #{Anagram.create("#{answers.join}")}"
   end
 
   private
