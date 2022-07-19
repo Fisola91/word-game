@@ -15,6 +15,7 @@ class Game
    output.puts "1/1. Guess a word from an anagram #{Anagram.create("#{answers.join}")}"
 
    evaluate_user_guesses
+  #  output.puts "2/2. Guess a word from an anagram #{Anagram.create("#{answers.last}")}"
   end
 
   def evaluate_user_guesses
@@ -34,11 +35,10 @@ class Game
 
       if guess == answers.join && current_attempt <= max_attempts
         output.puts "So far you have correctly guessed #{guess_counts} out of #{scores}."
-      end
-
-      if guess != answers.join && current_attempt < max_attempts
+      elsif guess != answers.join && current_attempt < max_attempts
         output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"
       end
+
 
       current_attempt += 1
     end
