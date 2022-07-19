@@ -68,7 +68,7 @@ RSpec.describe Game do
       end
     end
 
-    it "is lost with all incorrect guesses" do
+    fit "is lost with all incorrect guesses" do
       guesses = ["ONE", "TWO", "THREE"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)
