@@ -35,30 +35,16 @@ class Game
       if guess == answers.join && current_attempt <= max_attempts
         output.puts "So far you have correctly guessed #{guess_counts} out of #{scores}."
       end
-      # if guess != answers.join && current_attempt = max_attempts
-      #   output.puts "You lost."
-      # end
+
       if guess != answers.join && current_attempt < max_attempts
         output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"
       end
 
-
-
-      # else
-      #   output.puts "You lost."
-      # if guess != answers.join && current_attempt < max_attempts
-      # end
-      # guess_counts += 1
-      # scores += 1
-      # if guess != answers.join && current_attempt > max_attempts
-      # end
-
       current_attempt += 1
     end
+
     if guess != answers.join && current_attempt = max_attempts
       output.puts "You lost."
-    end
-    if guess != answers.join && current_attempt = max_attempts
       output.puts "Your final score: #{guess_counts -= 1}/#{scores}."
     else
       output.puts "Your final score: #{guess_counts}/#{scores}."
