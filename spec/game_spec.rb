@@ -15,7 +15,7 @@ RSpec.describe Game do
       expect(game_output_lines[1]).to match(/^1\/1. Guess a word from an anagram [RUBY]{4}$/)
     end
 
-    it "accepts a correct guess" do
+    fit "accepts a correct guess" do
       input = StringIO.new("RUBY") # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output)
       game.start
