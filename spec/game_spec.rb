@@ -49,7 +49,7 @@ RSpec.describe Game do
       end
     end
 
-    it "can be won with one incorrect guess" do
+    fit "can be won with one incorrect guess" do
       guesses = ["BURY", "RUBY"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)

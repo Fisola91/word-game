@@ -21,21 +21,26 @@ class Game
     guess = nil
     current_attempt = 1
     guess_counts = 1
-    score = 1
+    scores = 1
+    max_attempts_count = 3
     while guess != answers.join && current_attempt <= max_attempts
       guess = input.gets.to_s.strip
 
       if guess == answers.join
         output.puts "Correct! The answer is #{answers.join}."
+      else
+        output.puts "The answer is not #{guess}."
       end
-
-      # correct_answers += 1
 
       if guess == answers.join && current_attempt < max_attempts
-        output.puts "So far you have correctly guessed #{guess_counts} out of #{guess_counts}."
+        output.puts "So far you have correctly guessed #{guess_counts} out of #{scores}."
+      else
+        output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"
       end
-      guess_counts += 1
-      guess_counts += 1
+      # if guess != answers.join && current_attempt < max_attempts
+      # end
+      # guess_counts += 1
+      # scores += 1
 
       current_attempt += 1
     end
