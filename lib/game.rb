@@ -32,7 +32,7 @@ class Game
         output.puts "The answer is not #{guess}."
       end
 
-      if guess == answers.join && current_attempt < max_attempts
+      if guess == answers.join && current_attempt <= max_attempts
         output.puts "So far you have correctly guessed #{guess_counts} out of #{scores}."
       else
         output.puts "Try again. Attempts left: #{max_attempts_count -= 1}"

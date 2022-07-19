@@ -28,7 +28,7 @@ RSpec.describe Game do
       expect(game_output_lines[4]).to eq "Your final score: 1/1."
     end
 
-    it "can be won with two incorrect guesses" do
+    fit "can be won with two incorrect guesses" do
       guesses = ["ONE", "TWO", "RUBY"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)
