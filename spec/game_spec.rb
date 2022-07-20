@@ -110,7 +110,7 @@ RSpec.describe Game do
       end
     end
 
-    fit "can be played with multiple words" do
+    it "can be played with multiple words" do
       guesses = ["ALPHA", "BETA", "GAMMA", "MEGA", "OMEGA"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["DELTA", "OMEGA"], input: input, output: output, max_attempts: 3)
