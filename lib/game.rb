@@ -11,37 +11,42 @@ class Game
   end
 
   def start
-   output.puts "Let's play a game. You will have to guess 1 anagram."
-   output.puts "1/1. Guess a word from an anagram #{Anagram.create("#{answers[-1]}")}"
-   evaluate_user_guesses
+    if answers.size == 1
+      word_anagram = "anagram"
+    else
+      word_anagram = "anagrams"
+    end
+    output.puts "Let's play a game. You will have to guess #{answers.size} #{word_anagram}."
+    answers.each.with_index(1) do |answer, index|
+      output.puts "#{index}/#{answers.size}. Guess a word from an anagram #{Anagram.create("#{answer}")}"
+      evaluate_user_guesses
+    end
+    output.puts "Your final score: #{correct_answers}/#{answers.size}."
+
   end
 
 
   def evaluate_user_guesses
     guess = nil
     current_attempt = 1
-    max_attempts_count = 3
-    guess_counts = 1
-    scores = 1
-
     while guess != answers[-1] && current_attempt <= max_attempts
       guess = input.gets.to_s.strip
-      if guess == answers[-1]  && current_attempt <= max_attempts
+      if guess == answers[-1]
         output.puts "Correct! The answer is #{answers[-1]}."
         @correct_answers += 1
-        output.puts "So far you have correctly guessed #{correct_answers} out of #{scores}."
+        output.puts "So far you have correctly guessed #{correct_answers} out of #{answers.size}."
       else
         output.puts "The answer is not #{guess}."
         if current_attempt < max_attempts
-          output.puts "Try again. Attempts left: #{max_attempts_count -= 1}" # Generic approach that works for both cases
-        else current_attempt == max_attempts
+          output.puts "Try again. Attempts left: #{max_attempts - current_attempt}" # Generic approach that works for both cases
+        else
           output.puts "You lost."
         end
       end
 
       current_attempt += 1
     end
-    output.puts "Your final score: #{correct_answers}/#{answers.size}."
+
   end
 
   private

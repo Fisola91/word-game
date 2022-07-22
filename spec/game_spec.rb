@@ -4,7 +4,7 @@ RSpec.describe Game do
   describe "#start" do
     let(:output) { StringIO.new }
 
-    fit "prints out an anagram" do
+    it "prints out an anagram" do
       input = StringIO.new
       game = Game.new(answers: ["RUBY"], input: input, output: output)
       game.start
@@ -15,7 +15,7 @@ RSpec.describe Game do
       expect(game_output_lines[1]).to match(/^1\/1. Guess a word from an anagram [RUBY]{4}$/)
     end
 
-    fit "accepts a correct guess" do
+    it "accepts a correct guess" do
       input = StringIO.new("RUBY") # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output)
       game.start
@@ -28,7 +28,7 @@ RSpec.describe Game do
       expect(game_output_lines[4]).to eq "Your final score: 1/1."
     end
 
-    fit "can be won with two incorrect guesses" do
+    it "can be won with two incorrect guesses" do
       guesses = ["ONE", "TWO", "RUBY"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)
@@ -49,7 +49,7 @@ RSpec.describe Game do
       end
     end
 
-    fit "can be won with one incorrect guess" do
+    it "can be won with one incorrect guess" do
       guesses = ["BURY", "RUBY"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)
@@ -68,7 +68,7 @@ RSpec.describe Game do
       end
     end
 
-    fit "is lost with all incorrect guesses" do
+    it "is lost with all incorrect guesses" do
       guesses = ["ONE", "TWO", "THREE"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)
@@ -89,7 +89,7 @@ RSpec.describe Game do
       end
     end
 
-    fit "is lost with a different set of incorrect guesses" do
+    it "is lost with a different set of incorrect guesses" do
       guesses = ["ALPHA", "BETA", "GAMMA"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["RUBY"], input: input, output: output, max_attempts: 3)
@@ -110,7 +110,7 @@ RSpec.describe Game do
       end
     end
 
-    xit "can be played with multiple words" do
+    it "can be played with multiple words" do
       guesses = ["ALPHA", "BETA", "GAMMA", "MEGA", "OMEGA"]
       input = StringIO.new(guesses.join("\n")) # We prepopulate inputs in advance, it's a slightly unusual way to test them
       game = Game.new(answers: ["DELTA", "OMEGA"], input: input, output: output, max_attempts: 3)
@@ -121,6 +121,8 @@ RSpec.describe Game do
 
       aggregate_failures do
         expect(game_output_lines.size).to eq 14
+        expect(game_output_lines[0]).to eq "Let's play a game. You will have to guess 2 anagrams."
+        expect(game_output_lines[1]).to match(/^1\/2. Guess a word from an anagram [DELTA]{5}$/)
         expect(game_output_lines[2]).to eq "The answer is not ALPHA."
         expect(game_output_lines[3]).to eq "Try again. Attempts left: 2"
         expect(game_output_lines[4]).to eq "The answer is not BETA."
