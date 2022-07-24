@@ -18,7 +18,6 @@ class Game
     end
     output.puts "Let's play a game. You will have to guess #{answers.size} #{word_anagram}."
     answers.each.with_index(1) do |answer, index|
-      # p answer
       output.puts "#{index}/#{answers.size}. Guess a word from an anagram #{Anagram.create("#{answer}")}"
       evaluate_user_guesses(answer)
     end
