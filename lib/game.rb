@@ -43,11 +43,8 @@ class Game
           output.puts "You lost."
         end
       end
-
       current_attempt += 1
     end
-
-
   end
 
   private
