@@ -120,7 +120,7 @@ RSpec.describe Game do
       game_output_lines = output.string.split("\n").map(&:strip)
 
       aggregate_failures do
-        # expect(game_output_lines.size).to eq 14
+        expect(game_output_lines.size).to eq 14
         expect(game_output_lines[0]).to eq "Let's play a game. You will have to guess 2 anagrams."
         expect(game_output_lines[1]).to match(/^1\/2. Guess a word from an anagram [DELTA]{5}$/)
         expect(game_output_lines[2]).to eq "The answer is not ALPHA."
