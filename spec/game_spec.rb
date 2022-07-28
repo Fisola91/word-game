@@ -1,4 +1,5 @@
 require "game"
+require "tempfile"
 
 RSpec.describe Game do
   describe "#start" do
@@ -177,13 +178,54 @@ RSpec.describe Game do
       aggregate_failures do
         expect(game_output_lines.size).to eq 8
         expect(game_output_lines[0]).to eq "Let's play a game. You will have to guess 2 anagrams."
-        expect(game_output_lines[1]).to match(/^1\/2. Guess a word from an anagram [ALPHA]{5}$/)
+        expect(game_output_lines[1]).to match(/^1\/2. Guess a word from an anagram [ALPH]{5}$/)
         expect(game_output_lines[2]).to eq "Correct! The answer is ALPHA."
         expect(game_output_lines[3]).to eq "So far you have correctly guessed 1 out of 2."
         expect(game_output_lines[4]).to match(/^2\/2. Guess a word from an anagram [BETA]{4}$/)
         expect(game_output_lines[5]).to eq "Correct! The answer is BETA."
         expect(game_output_lines[6]).to eq "So far you have correctly guessed 2 out of 2."
         expect(game_output_lines[7]).to eq "Your final score: 2/2."
+      end
+    end
+  end
+
+  describe "#from_file" do
+    let(:output) { StringIO.new }
+
+    it "creates and starts a game from answers written in a file" do
+      file = Tempfile.new
+      answers = %w(alpha beta)
+      file_contents = answers.join("\n")
+      begin
+        file.write(file_contents)
+        file.rewind
+
+        guesses = %w(alpha beta)
+        input = StringIO.new(guesses.join("\n"))
+        game = Game.from_file(
+          path: file.path,
+          input: input,
+          output: output,
+          max_attempts: 3
+        )
+
+        game.start
+
+        game_output_lines = output.string.split("\n").map(&:strip)
+        aggregate_failures do
+          expect(game_output_lines.size).to eq 8
+          expect(game_output_lines[0]).to eq "Let's play a game. You will have to guess 2 anagrams."
+          expect(game_output_lines[1]).to match(/^1\/2. Guess a word from an anagram [ALPH]{5}$/)
+          expect(game_output_lines[2]).to eq "Correct! The answer is ALPHA."
+          expect(game_output_lines[3]).to eq "So far you have correctly guessed 1 out of 2."
+          expect(game_output_lines[4]).to match(/^2\/2. Guess a word from an anagram [BETA]{4}$/)
+          expect(game_output_lines[5]).to eq "Correct! The answer is BETA."
+          expect(game_output_lines[6]).to eq "So far you have correctly guessed 2 out of 2."
+          expect(game_output_lines[7]).to eq "Your final score: 2/2."
+        end
+      ensure
+        file.close
+        file.unlink
       end
     end
   end
