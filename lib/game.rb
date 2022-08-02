@@ -47,12 +47,12 @@ class Game
   end
 
   def self.from_file(path:, input: $stdin, output: $stdout, max_attempts: 3)
-    self.new(answers: [], input: input, output: output, max_attempts: max_attempts)
+    answers = File.read(path).split
+    Game.new(answers: answers, input: input, output: output, max_attempts: max_attempts)
+
     # Read the answers from the file
-
     # Read file line by line
-    # answers.each { |answer| p answer }
-
+    # input.each_line(path) { |answer| p answer }
   end
 
   private
