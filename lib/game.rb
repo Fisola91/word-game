@@ -48,7 +48,7 @@ class Game
 
   def self.from_file(path:, input: $stdin, output: $stdout, max_attempts: 3)
     answers = File.read(path).split
-    Game.new(answers: answers, input: input, output: output, max_attempts: max_attempts)
+    self.new(answers: answers, input: input, output: output, max_attempts: max_attempts)
   end
 
   private
