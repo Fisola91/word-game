@@ -7,7 +7,6 @@ class Game
     @input = input
     @max_attempts = 3
     @output = output
-
   end
 
   def start
@@ -20,7 +19,6 @@ class Game
     answers.each.with_index(1) do |answer, index|
       output.puts "#{index}/#{answers.size}. Guess a word from an anagram #{Anagram.create("#{answer.upcase}")}"
       evaluate_user_guesses(answer)
-      # Game.from_file(answers)
     end
     output.puts "Your final score: #{correct_answers}/#{answers.size}."
   end
