@@ -20,6 +20,7 @@ class Game
     answers.each.with_index(1) do |answer, index|
       output.puts "#{index}/#{answers.size}. Guess a word from an anagram #{Anagram.create("#{answer.upcase}")}"
       evaluate_user_guesses(answer)
+      # Game.from_file(answers)
     end
     output.puts "Your final score: #{correct_answers}/#{answers.size}."
   end
@@ -27,7 +28,6 @@ class Game
   def evaluate_user_guesses(answer)
     guess = nil
     current_attempt = 1
-
     while guess != answer.upcase && current_attempt <= max_attempts
       guess = input.gets.to_s.strip
       if guess.upcase == answer.upcase
@@ -44,6 +44,15 @@ class Game
       end
       current_attempt += 1
     end
+  end
+
+  def self.from_file(path:, input: $stdin, output: $stdout, max_attempts: 3)
+    self.new(answers: [], input: input, output: output, max_attempts: max_attempts)
+    # Read the answers from the file
+
+    # Read file line by line
+    # answers.each { |answer| p answer }
+
   end
 
   private

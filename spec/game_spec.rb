@@ -1,6 +1,7 @@
 require "game"
 require "tempfile"
 
+
 RSpec.describe Game do
   describe "#start" do
     let(:output) { StringIO.new }
@@ -192,7 +193,7 @@ RSpec.describe Game do
   describe "#from_file" do
     let(:output) { StringIO.new }
 
-    it "creates and starts a game from answers written in a file" do
+    fit "creates and starts a game from answers written in a file" do
       file = Tempfile.new
       answers = %w(alpha beta)
       file_contents = answers.join("\n")
