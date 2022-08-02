@@ -49,10 +49,6 @@ class Game
   def self.from_file(path:, input: $stdin, output: $stdout, max_attempts: 3)
     answers = File.read(path).split
     Game.new(answers: answers, input: input, output: output, max_attempts: max_attempts)
-
-    # Read the answers from the file
-    # Read file line by line
-    # input.each_line(path) { |answer| p answer }
   end
 
   private
