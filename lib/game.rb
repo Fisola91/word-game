@@ -7,7 +7,6 @@ class Game
     @input = input
     @max_attempts = 3
     @output = output
-
   end
 
   def start
@@ -27,7 +26,6 @@ class Game
   def evaluate_user_guesses(answer)
     guess = nil
     current_attempt = 1
-
     while guess != answer.upcase && current_attempt <= max_attempts
       guess = input.gets.to_s.strip
       if guess.upcase == answer.upcase
@@ -44,6 +42,11 @@ class Game
       end
       current_attempt += 1
     end
+  end
+
+  def self.from_file(path:, input: $stdin, output: $stdout, max_attempts: 3)
+    answers = File.read(path).split
+    self.new(answers: answers, input: input, output: output, max_attempts: max_attempts)
   end
 
   private
