@@ -35,7 +35,7 @@ class Game
       else
         output.puts "The answer is not #{guess.upcase}."
         if current_attempt < max_attempts
-          output.puts "Try again. Attempts left: #{max_attempts - current_attempt}" # Generic approach that works for both cases
+          output.puts "Try again. Attempts left: #{max_attempts - current_attempt}"
         else
           output.puts "You lost."
         end
